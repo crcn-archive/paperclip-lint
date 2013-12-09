@@ -1,0 +1,31 @@
+{
+  "name": "paperclip-lint",
+  "version": "0.0.1",
+  "description": "paperclip-lint ==============",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "pclint": "./bin/pclint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/classdojo/paperclip-lint.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/classdojo/paperclip-lint/issues"
+  },
+  "dependencies": {
+    "optimist": "~0.6.0",
+    "paperclip": "~0.2.34",
+    "protoclass": "0.0.5",
+    "nofactor": "0.0.30"
+  },
+  "devDependencies": {
+    "expect.js": "~0.2.0",
+    "mocha": "~1.15.1"
+  }
+}

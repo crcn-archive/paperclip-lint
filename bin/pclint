@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+var argv = require("optimist").
+usage("Usage: $0 [template-path]").
+argv;
+
+require("colors");
+
+
+var pclint = require(".."),
+pc         = require("paperclip"),
+fs         = require("fs"),
+
+report = pclint(pc.compile(fs.readFileSync(argv._.shift(), "utf8")));
+
+
+function printProblems (label, collection) {
+  if (!collection.length) return;
+  console.log("");
+  console.error(label);
+  for(var i = collection.length; i--;) {
+    console.error(" - " + collection[i].message);
+  }
+  console.log("");
+}
+
+printProblems("Warnings:", report.warnings);
+printProblems("Errors:", report.errors);
+
+console.log("errors: %d, warnings: %d\n", report.errors.length, report.warnings.length);
+
+if(report.errors.length) {
+  process.exit(1);
+}
