@@ -9,14 +9,13 @@ require("colors");
 var pclint = require(".."),
 pc         = require("paperclip"),
 fs         = require("fs"),
+src,
 
-report = pclint(pc.compile(fs.readFileSync(argv._.shift(), "utf8")));
-
+report = pclint(pc.compile(fs.readFileSync(src = argv._.shift(), "utf8")));
 
 function printProblems (label, collection) {
   if (!collection.length) return;
-  console.log("");
-  console.error(label);
+  console.log("\n%s %d\n", label, collection.length);
   for(var i = collection.length; i--;) {
     console.error(" - " + collection[i].message);
   }
@@ -26,7 +25,9 @@ function printProblems (label, collection) {
 printProblems("Warnings:", report.warnings);
 printProblems("Errors:", report.errors);
 
-console.log("errors: %d, warnings: %d\n", report.errors.length, report.warnings.length);
+if (!report.errors.length && !report.warnings.length) {
+  console.log("lint free!");
+}
 
 if(report.errors.length) {
   process.exit(1);
