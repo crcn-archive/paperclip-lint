@@ -31,4 +31,27 @@ describe("pclint#", function () {
     expect(report.warnings[0].message).to.contain("cannot dynamically change");
   });
 
+  /**
+   */
+
+  it("can inspect a block", function () {
+    var report = pclint(pc.compile("{{#block}}<input type='{{type}}' />{{/}}"));
+    expect(report.errors[0].message).to.contain("cannot dynamically change");
+  });
+
+  /**
+   */
+
+  it("can inspect a child block", function () {
+    var report = pclint(pc.compile("{{#block}}{{/else}}<input type='{{type}}' />{{/}}"));
+    expect(report.errors[0].message).to.contain("cannot dynamically change");
+  });
+
+  it("can inspect a sub-block", function () {
+    var report = pclint(pc.compile("{{#block}}{{#block}}<input type='{{type}}' />{{/}}{{/}}"));
+    expect(report.errors[0].message).to.contain("cannot dynamically change");
+  });
+
+
+
 });
