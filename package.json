@@ -4,7 +4,7 @@
   "description": "paperclip-lint ==============",
   "main": "./lib/index.js",
   "scripts": {
-	"test":"mocha"
+    "test": "mocha"
   },
   "bin": {
     "pclint": "./bin/pclint"
@@ -22,7 +22,8 @@
     "optimist": "~0.6.0",
     "paperclip": "~0.2.34",
     "protoclass": "0.0.5",
-    "nofactor": "0.0.30"
+    "nofactor": "0.0.30",
+    "colors": "~0.6.2"
   },
   "devDependencies": {
     "expect.js": "~0.2.0",
