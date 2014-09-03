@@ -1,6 +1,6 @@
 {
   "name": "paperclip-lint",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "paperclip-lint ==============",
   "main": "./lib/index.js",
   "scripts": {

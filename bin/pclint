@@ -14,8 +14,8 @@ function fixPath (path) {
 var pclint = require(".."),
 pc         = require("paperclip"),
 fs         = require("fs"),
-src,
-files      = glob.sync(src = fixPath(argv._.shift()));
+files      = glob.sync(src = fixPath(argv._.shift())),
+numErrors  = 0;
 
 
 files.forEach(function (file) {
@@ -25,6 +25,8 @@ files.forEach(function (file) {
 
     function printProblems (label, collection) {
       if (!collection.length) return;
+
+      console.error("%s".red, file);
       console.log("\n%s %d\n", label, collection.length);
       for(var i = collection.length; i--;) {
         console.error(" - " + collection[i].message);
@@ -40,11 +42,17 @@ files.forEach(function (file) {
     }
 
     if(report.errors.length) {
-      process.exit(1);
+      numErrors++;
     }
   } catch (e) {
-    console.error("cannot parse %s".red, file);
+    console.error("%s".red, file);
     console.error(e);
+    numErrors++;
   }
 
 });
+
+
+if (numErrors) {
+  process.exit(1);
+}
